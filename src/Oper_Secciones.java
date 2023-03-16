@@ -19,7 +19,7 @@ public class Oper_Secciones
 
         System.out.println("Se ha introducido la fila correctamente");
     }
-    public void mostrarFila(){
+    public void mostrarFilaYAsientos(){
         Fila aux=prim;
         if (aux==null){
             System.out.println("No hay elementos en la fila");

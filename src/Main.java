@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int opcion=0;
         int tipo,cantidad;
-        char fila;
+        String fila;
         Seccion sec[]={new Seccion("VIP"), new Seccion("Palcos"),new Seccion("Normal")};
         do {
             System.out.print( "=== Menú ===\n" +
@@ -43,10 +43,11 @@ public class Main {
                             "\n3.Normal");
                     tipo=sc.nextInt()-1;
                     System.out.println("Introduzca la fila en la que desea insertar el asiento: ");
-                    fila=sc.next().charAt(10);
+                    fila=sc.next();
+                    char ch =(char)fila.charAt(0);
                     System.out.println("Introduzca la cantidad de asientos que desea insertar: ");
                     cantidad=sc.nextInt();
-                    sec[tipo].opS.InsertarAsientos(fila, cantidad);
+                    sec[tipo].opS.InsertarAsientos(ch, cantidad);
 
                     //
                     break;
@@ -57,7 +58,7 @@ public class Main {
                             "\n2.Palcos" +
                             "\n3.Normal");
                             tipo=sc.nextInt()-1;
-                            sec[tipo].opS.mostrarFila();
+                            sec[tipo].opS.mostrarFilaYAsientos();
                     break;
                 case 4:
                     System.out.println("Opción 4 seleccionada: Listar asientos disponibles");
