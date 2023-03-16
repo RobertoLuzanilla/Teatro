@@ -62,6 +62,12 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Opción 4 seleccionada: Listar asientos disponibles");
+                    System.out.println("Introduzca la seccion la que desea ver la lista: ");
+                    System.out.println("1.Vip" +
+                            "\n2.Palcos" +
+                            "\n3.Normal");
+                            tipo=sc.nextInt()-1;
+                            sec[tipo].opS.ListarAsientos();
 
                     break;
                 case 5:

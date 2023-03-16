@@ -48,4 +48,12 @@ public class Oper_Secciones
         }
     }
 
+    public void ListarAsientos(){
+        Fila aux=prim;
+        System.out.println(prim.getLetra() +" " + ult.getLetra());
+        for (;aux!=null;aux=aux.sig){
+            aux.opf.AsientosDisp(aux.getLetra());
+        }
+    }
+
 }
