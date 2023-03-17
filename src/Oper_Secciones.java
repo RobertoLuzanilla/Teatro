@@ -55,5 +55,33 @@ public class Oper_Secciones
             aux.opf.AsientosDisp(aux.getLetra());
         }
     }
+    public boolean PosFila(char Fila){
+        Fila aux=prim;
+        while(aux!=null && aux.Letra!=Fila){
+            aux=aux.sig;
+        }
+       return aux != null;
+    }
+    public int ContarFilaA(){
+        Fila aux=prim;
+        int asientoDisp=0;
+        for (;aux!=null;aux=aux.sig){
+            asientoDisp+=aux.opf.ContarAsientos();
+        }
+        return asientoDisp;
+    }
+    public boolean Llamar(Fila aux, int numeroAc){
 
+       return aux.opf.EstadoAsiento(numeroAc);
+    }
+    public Fila EnviarFila(char Fila){
+        Fila aux=prim;
+        while(aux!=null && aux.Letra!=Fila){
+            aux=aux.sig;
+        }
+        return aux;
+    }
+    public void llamarVender(Fila aux, int Numero){
+        aux.opf.VentaDeAsiento(Numero);
+    }
 }

@@ -1,9 +1,12 @@
+import java.util.Scanner;
+
 public class Oper_ListasFilas {
     Asiento prim;
     Asiento ulti;
-    int cantidadAsientos;
+    int cantidadAsientos=1;
+    Scanner sc=new Scanner(System.in);
     public void InsertarAsientos(int cantidad){
-        for (int i = 1; i <= cantidad; i++) {
+        for (int i = cantidadAsientos; i < cantidad + cantidadAsientos; i++) {
             Asiento Nuevo = new Asiento(i);
             if (prim==null){
                 prim=Nuevo;
@@ -27,10 +30,52 @@ public class Oper_ListasFilas {
                 if (!Busc.estado){
                     AsientosFilas+=Busc.getNum() + ", ";
                 }
+            }if (!Busc.estado){
+                AsientosFilas+=Busc.getNum();
             }
-            AsientosFilas+=Busc.getNum();
             System.out.println(AsientosFilas);
         }
+    }/*
+    public boolean PosAsiento(int num){
+        Asiento aux=prim;
+        while(aux!=null && aux.num!=num){
+            aux=aux.sig;
+        }
+        return aux != null;
+    }
+    */
+    public boolean EstadoAsiento(int num){
+        Asiento aux=prim;
+        while(aux!=null && aux.num!=num){
+            aux=aux.sig;
+        }
+        if (aux!=null){
+            return aux.estado;
+        }
+       return true;
+    }
+    public void VentaDeAsiento(int AsientoV){
+        Asiento venta=prim;
 
+            while (venta.sig != null && venta.num != AsientoV) {
+                venta = venta.sig;
+            }
+            venta.setEstado(true);
+
+        //for (;venta.sig!=null;venta=venta.sig){
+          //  if (!venta.estado){
+
+           // }
+       // }
+    }
+    public int ContarAsientos(){
+       Asiento aux=prim;
+       int asientoDisp=0;
+        for (;aux!=null;aux=aux.sig){
+            if (!aux.estado){
+                asientoDisp++;
+            }
+        }
+        return asientoDisp;
     }
 }

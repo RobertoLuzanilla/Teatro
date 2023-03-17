@@ -72,11 +72,47 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Opción 5 seleccionada: Asignar precio de boletos");
-
+                    System.out.println("Introduzca la seccion la que desea ver la lista: ");
+                    System.out.println("1.Vip" +
+                            "\n2.Palcos" +
+                            "\n3.Normal");
+                    tipo=sc.nextInt()-1;
+                    System.out.println("Introduzca el precio de la seccion: ");
+                    int precio=sc.nextInt();
+                    sec[tipo].setPrecio(precio);
                     break;
                 case 6:
-                    System.out.println("Opción 6 seleccionada: Venta de boletos");
-                    // código para realizar una venta de boletos
+                    double TotalApagar=0;
+                    System.out.println("Opción 6 seleccionada: Asignar precio de boletos");
+                    int contador=0;
+                    System.out.println("Introduzca la cantidad de los boletos a comprar");
+                    cantidad=sc.nextInt();
+                    if (cantidad<=(sec[0].opS.ContarFilaA()) + (sec[1].opS.ContarFilaA()) + (sec[2].opS.ContarFilaA())){
+                        do{
+                            System.out.println("Introduzca la seccion la que desea ver la lista: ");
+                            System.out.println("1.Vip" + "\n2.Palcos" + "\n3.Normal");
+                            tipo=sc.nextInt()-1;
+                            if (sec[tipo].opS.ContarFilaA()>=1) {
+                                System.out.println("Asientos Disponibles en la seccion");
+                                sec[tipo].opS.ListarAsientos();
+                                System.out.println("Introduzca la fila en la que desea comprar el boleto: ");
+                                fila=sc.next();
+                                char Pre =(char)fila.charAt(0);
+                                if (sec[tipo].opS.PosFila(Pre)){
+                                    System.out.println("Introduzca el asiento que desea de la fila");
+                                    int numeroA=sc.nextInt();
+                                    System.out.println((sec[tipo].opS.Llamar(sec[tipo].opS.EnviarFila(Pre),numeroA)));
+                                    if (!sec[tipo].opS.Llamar(sec[tipo].opS.EnviarFila(Pre),numeroA)){
+                                        sec[tipo].opS.llamarVender(sec[tipo].opS.EnviarFila(Pre),numeroA);
+                                        contador++;
+                                        TotalApagar += sec[tipo].getPrecio();
+                                    }
+                                }
+                            }
+                        }while (contador<=cantidad);
+                                System.out.println("El importe total es " + TotalApagar);
+                    }
+
                     break;
                 case 7:
                     System.out.println("Opción 7 seleccionada: Cancelar una venta");
