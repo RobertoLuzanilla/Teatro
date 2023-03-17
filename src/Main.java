@@ -144,18 +144,17 @@ public class Main {
                     if (1<=(sec[0].opS.ContarFilaO() + (sec[1].opS.ContarFilaO()) + (sec[2].opS.ContarFilaO()))){
                         System.out.println("Introduzca la seccion la que desea ver la lista");
                         System.out.println("1.Vip" + "\n2.Palcos" + "\n3.Normal");
-                        tipo=sc.nextInt()-1;
-                        if (sec[tipo].opS.ContarFilaO()>=1){
+                        int tipoUno=sc.nextInt()-1;
+                        if (sec[tipoUno].opS.ContarFilaO()>=1){
                             System.out.println("Asientos disponibles para cambiar");
-                            sec[tipo].opS.ListarAsientosOcupados();
+                            sec[tipoUno].opS.ListarAsientosOcupados();
                             System.out.println("Introduzca la fila en la que desea cambiar el asiento");
                             fila=sc.next();
                             char Pre=(char) fila.charAt(0);
-                            if (sec[tipo].opS.PosFila(Pre)){
+                            if (sec[tipoUno].opS.PosFila(Pre)){
                                 System.out.println("Introduzca el asiento que desea cambiar de fila ");
                                 int numeroA= sc.nextInt();
-
-                                System.out.println(sec[tipo].opS.Llamar(sec[tipo].opS.EnviarFila(Pre),numeroA));
+                                System.out.println(sec[tipoUno].opS.Llamar(sec[tipoUno].opS.EnviarFila(Pre),numeroA));
                                 System.out.println("Introduzca la seccion la que desea ver la lista");
                                 System.out.println("1.Vip" + "\n2.Palcos" + "\n3.Normal");
                                 tipo=sc.nextInt()-1;
@@ -167,7 +166,13 @@ public class Main {
                                     char pro=(char) fila.charAt(0);
                                     if (sec[tipo].opS.PosFila(pro)){
                                         System.out.println("Introduzca el asiento que desea de la fila");
-                                        int NumroB=sc.nextInt();
+                                        int numeroB=sc.nextInt();
+                                        System.out.println(sec[tipo].opS.Llamar(sec[tipo].opS.EnviarFila(pro),numeroB));
+                                        if (sec[tipo].opS.Llamar(sec[tipo].opS.EnviarFila(pro),numeroB)){
+                                            sec[tipoUno].opS.llamarDesocupar(sec[tipoUno].opS.EnviarFila(Pre),numeroA);
+                                            sec[tipo].opS.llamarVender(sec[tipo].opS.EnviarFila(pro),numeroB);
+                                            TotalApagar += sec[tipo].getPrecio();
+                                        }
                                     }
                                 }
                             }
@@ -178,9 +183,6 @@ public class Main {
                 case 9:
                     System.out.println("Opción 9 seleccionada: Mostrar ventas por sección");
                     // código para mostrar las ventas por sección
-                    break;
-                case 10:
-                    System.out.println("Gracias por usar el programa. ¡Hasta luego!");
                     break;
                 default:
                     System.out.println("La opción ingresada no es válida. Por favor ingrese una opción del 1 al 10.");
