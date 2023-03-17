@@ -84,7 +84,7 @@ public class Main {
                     break;
                 case 6:
 
-                    System.out.println("Opción 6 seleccionada: Asignar precio de boletos");
+                    System.out.println("Opción 6 seleccionada: Venta de Boleto");
                     int contador=0;
                     System.out.println("Introduzca la cantidad de los boletos a comprar");
                     cantidad=sc.nextInt();
@@ -141,6 +141,38 @@ public class Main {
                     break;
                 case 8:
                     System.out.println("Opción 8 seleccionada: Cambiar asiento");
+                    if (1<=(sec[0].opS.ContarFilaO() + (sec[1].opS.ContarFilaO()) + (sec[2].opS.ContarFilaO()))){
+                        System.out.println("Introduzca la seccion la que desea ver la lista");
+                        System.out.println("1.Vip" + "\n2.Palcos" + "\n3.Normal");
+                        tipo=sc.nextInt()-1;
+                        if (sec[tipo].opS.ContarFilaO()>=1){
+                            System.out.println("Asientos disponibles para cambiar");
+                            sec[tipo].opS.ListarAsientosOcupados();
+                            System.out.println("Introduzca la fila en la que desea cambiar el asiento");
+                            fila=sc.next();
+                            char Pre=(char) fila.charAt(0);
+                            if (sec[tipo].opS.PosFila(Pre)){
+                                System.out.println("Introduzca el asiento que desea cambiar de fila ");
+                                int numeroA= sc.nextInt();
+
+                                System.out.println(sec[tipo].opS.Llamar(sec[tipo].opS.EnviarFila(Pre),numeroA));
+                                System.out.println("Introduzca la seccion la que desea ver la lista");
+                                System.out.println("1.Vip" + "\n2.Palcos" + "\n3.Normal");
+                                tipo=sc.nextInt()-1;
+                                if(sec[tipo].opS.ContarFilaA()>=1){
+                                    System.out.println("Asientos Disponibles en la seccion");
+                                    sec[tipo].opS.ListarAsientos();
+                                    System.out.println("Introduzca la fila en la que desea cambiar el boleto: ");
+                                    fila=sc.next();
+                                    char pro=(char) fila.charAt(0);
+                                    if (sec[tipo].opS.PosFila(pro)){
+                                        System.out.println("Introduzca el asiento que desea de la fila");
+                                        int NumroB=sc.nextInt();
+                                    }
+                                }
+                            }
+                        }
+                    }
                     // código para cambiar un asiento
                     break;
                 case 9:
