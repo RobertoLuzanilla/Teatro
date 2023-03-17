@@ -106,6 +106,9 @@ public class Main {
                                     if (!sec[tipo].opS.Llamar(sec[tipo].opS.EnviarFila(Pre),numeroA)){
                                         sec[tipo].opS.llamarVender(sec[tipo].opS.EnviarFila(Pre),numeroA);
                                         contador++;
+                                        int cantidadAV=0;
+                                        cantidadAV+=cantidad;
+                                        sec[tipo].setSientosV(cantidadAV);
                                         TotalApagar += sec[tipo].getPrecio();
                                     }
                                 }
@@ -182,6 +185,8 @@ public class Main {
                     break;
                 case 9:
                     System.out.println("Opción 9 seleccionada: Mostrar ventas por sección");
+                    System.out.println("Seccion " + "--" + " Boletos Vendidos " + "--" + " Precio "  + "--" + " Total ");
+                    System.out.println("Vip " + "   --   " +sec[0].getSientosV() + "   --   " + sec[0].getPrecio() + "   --   " + (sec[0].getPrecio() * sec[0].getSientosV()));
                     // código para mostrar las ventas por sección
                     break;
                 default:
