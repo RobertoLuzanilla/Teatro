@@ -55,6 +55,13 @@ public class Oper_Secciones
             aux.opf.AsientosDisp(aux.getLetra());
         }
     }
+    public void ListarAsientosOcupados(){
+        Fila aux=prim;
+        System.out.println(prim.getLetra() + " " + ult.getLetra());
+        for (;aux!=null;aux=aux.sig){
+            aux.opf.AsientosNoDisp(aux.getLetra());
+        }
+    }
     public boolean PosFila(char Fila){
         Fila aux=prim;
         while(aux!=null && aux.Letra!=Fila){
@@ -70,8 +77,15 @@ public class Oper_Secciones
         }
         return asientoDisp;
     }
+    public int ContarFilaO(){
+        Fila aux=prim;
+        int asientosOcu=0;
+        for (;aux!=null;aux=aux.sig){
+            asientosOcu+=aux.opf.AsientosVendidos();
+        }
+        return asientosOcu;
+    }
     public boolean Llamar(Fila aux, int numeroAc){
-
        return aux.opf.EstadoAsiento(numeroAc);
     }
     public Fila EnviarFila(char Fila){
@@ -83,5 +97,9 @@ public class Oper_Secciones
     }
     public void llamarVender(Fila aux, int Numero){
         aux.opf.VentaDeAsiento(Numero);
+    }
+
+    public void llamarDesocupar(Fila aux, int numer){
+        aux.opf.desocuparAsiento(numer);
     }
 }

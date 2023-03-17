@@ -35,7 +35,23 @@ public class Oper_ListasFilas {
             }
             System.out.println(AsientosFilas);
         }
-    }/*
+    }
+    public void AsientosNoDisp(char NombreFila) {
+        if (prim != null) {
+            Asiento Busc = prim;
+            String AsientosFilas = "Fila " + NombreFila + ": ";
+            for (; Busc.sig != null; Busc = Busc.sig) {
+                if (Busc.estado) { // Si el asiento está ocupado (estado = true)
+                    AsientosFilas += Busc.getNum() + ", ";
+                }
+            }
+            if (Busc.estado) { // Si el último asiento está ocupado (estado = true)
+                AsientosFilas += Busc.getNum();
+            }
+            System.out.println(AsientosFilas);
+        }
+    }
+    /*
     public boolean PosAsiento(int num){
         Asiento aux=prim;
         while(aux!=null && aux.num!=num){
@@ -68,6 +84,14 @@ public class Oper_ListasFilas {
            // }
        // }
     }
+    public void desocuparAsiento(int AsientoD){
+        Asiento desocupar=prim;
+
+        while (desocupar.sig!=null && desocupar.num!= AsientoD){
+            desocupar = desocupar.sig;
+        }
+        desocupar.setEstado(false);
+    }
     public int ContarAsientos(){
        Asiento aux=prim;
        int asientoDisp=0;
@@ -77,5 +101,17 @@ public class Oper_ListasFilas {
             }
         }
         return asientoDisp;
+    }
+    public int AsientosVendidos() {
+        Asiento aux = prim;
+        int asientosOcu = 0;
+
+        while (aux!=null){
+            if (aux.estado){
+                asientosOcu++;
+            }
+            aux=aux.sig;
+        }
+        return asientosOcu;
     }
 }

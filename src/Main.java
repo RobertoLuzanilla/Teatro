@@ -5,6 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int opcion=0;
         int tipo,cantidad;
+        double TotalApagar=0;
         String fila;
         Seccion sec[]={new Seccion("VIP"), new Seccion("Palcos"),new Seccion("Normal")};
         do {
@@ -82,7 +83,7 @@ public class Main {
                     sec[tipo].setPrecio(precio);
                     break;
                 case 6:
-                    double TotalApagar=0;
+
                     System.out.println("Opción 6 seleccionada: Asignar precio de boletos");
                     int contador=0;
                     System.out.println("Introduzca la cantidad de los boletos a comprar");
@@ -112,10 +113,30 @@ public class Main {
                         }while (contador<=cantidad);
                                 System.out.println("El importe total es " + TotalApagar);
                     }
-
                     break;
                 case 7:
                     System.out.println("Opción 7 seleccionada: Cancelar una venta");
+                    if (1<=(sec[0].opS.ContarFilaO() + (sec[1].opS.ContarFilaO()) + (sec[2].opS.ContarFilaO()))){
+                        System.out.println("Introduzca la seccion la que desea ver la lista: ");
+                        System.out.println("1.Vip" + "\n2.Palcos" + "\n3.Normal");
+                        tipo=sc.nextInt()-1;
+                        if (sec[tipo].opS.ContarFilaO()>=1){
+                            System.out.println("Asientos disponibles para cancerlar");
+                            sec[tipo].opS.ListarAsientosOcupados();
+                            System.out.println("Introduzca el fila que desea cancelar el asiento: ");
+                            fila=sc.next();
+                            char Pre=(char) fila.charAt(0);
+                            if (sec[tipo].opS.PosFila(Pre)){
+                                System.out.println("Introduzca el asiento que desea cancelar de la fila: ");
+                                int numeroA= sc.nextInt();
+                                System.out.println(sec[tipo].opS.Llamar(sec[tipo].opS.EnviarFila(Pre),numeroA));
+                                if (sec[tipo].opS.Llamar(sec[tipo].opS.EnviarFila(Pre),numeroA)){
+                                    sec[tipo].opS.llamarDesocupar(sec[tipo].opS.EnviarFila(Pre),numeroA);
+                                    TotalApagar -= sec[tipo].getPrecio();
+                                }
+                            }
+                        }
+                    }
                     // código para cancelar una venta
                     break;
                 case 8:
